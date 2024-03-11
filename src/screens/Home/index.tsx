@@ -1,12 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
 import Header from "../../components/Header";
+import TodoContainer from "../../components/TodoContainer";
 
 export default function Home() {
   return (
     <>
-    <Header />
-      <Text>First commit structure</Text>
+      <Header />
+      <TodoContainer />
     </>
   );
 }
