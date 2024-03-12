@@ -20,9 +20,7 @@ export const Category = styled.Text`
   font-size: 14px;
   font-weight: 600;
   border-radius: 16px;
-  margin-left: 8px;
   padding: 8px;
-  text-align: center;
   color: ${(props) => props.theme.textPrimary};
 `;
 
@@ -34,4 +32,9 @@ export const Title = styled.Text`
   overflow: hidden;
   margin-left: 8px;
   max-width: 160px;
+`;
+
+export const DateText = styled.Text<{ isOutdated?: boolean }>`
+  font-size: 14px;
+  color: ${(props) => (props.isOutdated ? "red" : props.theme.textSecondary)};
 `;

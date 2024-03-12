@@ -7,10 +7,17 @@ export const Container = styled.View`
   height: 90%;
 `;
 
+export const Header = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+`;
+
 export const Title = styled.Text`
-  font-size: 20;
-  line-height: 32;
-  margin-top: 16;
+  font-size: 20px;
+  line-height: 32px;
   font-weight: bold;
   color: #0170a5;
 `;
@@ -34,7 +41,7 @@ export const NewTodoButton = styled.TouchableOpacity`
 `;
 
 export const NewTodoButtonText = styled.Text`
-  font-size: 32;
-  line-height: 40;
+  font-size: 32px;
+  line-height: 40px;
   color: #fff;
 `;

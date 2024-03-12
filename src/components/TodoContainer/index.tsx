@@ -1,23 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, Text } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
+import { FlatList, Text, TextInput } from "react-native";
 import TodoItem from "../TodoItem";
 import NewTodoModal from "../NewTodoModal";
-import { Container, NewTodoButton, NewTodoButtonText, Title } from "./styles";
+import {
+  Container,
+  Header,
+  NewTodoButton,
+  NewTodoButtonText,
+  Title,
+} from "./styles";
 import useTodoContainer from "./useTodoContainer";
+import TextField from "../TextField";
 
 export default function TodoContainer() {
   /* TODO empty items message */
- const {todoList, showModal, setShowModal, onSave} = useTodoContainer();
+  const {
+    todoList,
+    showModal,
+    setShowModal,
+    onSave,
+    searchText,
+    setSearchText,
+    filteredTodos,
+  } = useTodoContainer();
 
   return (
     <Container>
       {todoList ? (
         <FlatList
-          data={todoList}
+          data={filteredTodos.length ? filteredTodos : todoList}
           renderItem={({ item }) => <TodoItem {...item} />}
           keyExtractor={(item) => item.id?.toString()}
-          ListHeaderComponent={<Title>Todo List</Title>}
+          ListHeaderComponent={
+            <Header>
+              <Title>Todo List</Title>
+              <TextField
+                placeholder="Buscar por nome..."
+                value={searchText}
+                onChangeText={(text) => setSearchText(text)}
+              />
+            </Header>
+          }
         />
       ) : (
         <Text>

@@ -3,7 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import { Input } from "./styles";
 
 interface ITextField {
-  label: string;
+  label?: string;
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
@@ -18,7 +18,7 @@ const TextField = ({
   hasError,
 }: ITextField) => (
   <View>
-    <Text>{label}</Text>
+    {label && <Text>{label}</Text>}
     <Input
       hasError={hasError}
       onChangeText={onChangeText}

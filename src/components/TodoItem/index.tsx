@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { Card, Category, Title } from "./styles";
+import { View } from "react-native";
+import { Card, Category, DateText, Title } from "./styles";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import useTodoItem from "./useTodoItem";
 import { ITodo } from "../../interfaces/todo";
@@ -12,7 +12,7 @@ export default function TodoItem({
   id,
   limitDate,
 }: ITodo) {
-  const { formattedDate, checkItem } = useTodoItem(id, limitDate);
+  const { formattedDate, checkItem, isOutdated } = useTodoItem(id, limitDate);
   return (
     <Card>
       <BouncyCheckbox
@@ -30,7 +30,9 @@ export default function TodoItem({
         isChecked={completed}
         onPress={(completed) => checkItem(completed)}
       />
-      <Text>{formattedDate}</Text>
+      <DateText isOutdated={isOutdated}>
+        {formattedDate}
+      </DateText>
     </Card>
   );
 }

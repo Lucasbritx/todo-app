@@ -5,6 +5,16 @@ import { ITodo } from "../../interfaces/todo";
 function useTodoContainer() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [todoList, setTodoList] = useState<ITodo[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+  const [filteredTodos, setFilteredTodos] = useState<ITodo[]>([]);
+
+  const filterTodos = (todos: ITodo[], text: string) => {
+    return todos.filter((todo) => todo.name.includes(text));
+  };
+
+  useEffect(() => {
+    setFilteredTodos(filterTodos(todoList, searchText));
+  }, [searchText]);
 
   const getTodos = async () => {
     try {
@@ -19,6 +29,7 @@ function useTodoContainer() {
 
   useEffect(() => {
     getTodos();
+    setSearchText("");
   }, []);
 
   const onSave = () => {
@@ -31,6 +42,9 @@ function useTodoContainer() {
     showModal,
     setShowModal,
     onSave,
+    searchText,
+    setSearchText,
+    filteredTodos,
   };
 }
 
