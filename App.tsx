@@ -2,15 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Home from "./src/screens/Home";
 import { ThemeProvider } from "styled-components";
-import theme from "./theme";
-
+import { COLORS } from "./theme";
+import { PaperProvider } from "react-native-paper";
 
 function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <ThemeProvider theme={theme}>
-        <Home />
-        <StatusBar style="auto" />
+      <ThemeProvider theme={COLORS}>
+        <PaperProvider>
+          <Home />
+          <StatusBar style="auto" />
+        </PaperProvider>
       </ThemeProvider>
     </SafeAreaView>
   );

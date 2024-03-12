@@ -1,4 +1,4 @@
-const COLORS = {
+export const COLORS = {
   primary: "#0170a5",
   secondary: "#FFC700",
   white: "#fff",
@@ -7,5 +7,3 @@ const COLORS = {
   textSecondary: "#6c757d",
   error: "#dc3545",
 };
-
-export default COLORS;

@@ -1,16 +1,11 @@
 import React from "react";
-import { FlatList, Text, TextInput } from "react-native";
+import { FlatList, Text } from "react-native";
 import TodoItem from "../TodoItem";
 import NewTodoModal from "../NewTodoModal";
-import {
-  Container,
-  Header,
-  NewTodoButton,
-  NewTodoButtonText,
-  Title,
-} from "./styles";
+import { Container, Header, Title } from "./styles";
 import useTodoContainer from "./useTodoContainer";
 import TextField from "../TextField";
+import { FAB } from "react-native-paper";
 
 export default function TodoContainer() {
   /* TODO empty items message */
@@ -35,7 +30,8 @@ export default function TodoContainer() {
             <Header>
               <Title>Todo List</Title>
               <TextField
-                placeholder="Buscar por nome..."
+                label="Pesquisar"
+                leftIcon="magnify"
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
               />
@@ -48,13 +44,19 @@ export default function TodoContainer() {
           de adicionar
         </Text>
       )}
-      <NewTodoButton
+      <FAB
+        icon="plus"
+        style={{
+          position: "absolute",
+          borderRadius: 50,
+          margin: 16,
+          right: 0,
+          bottom: 0,
+        }}
         onPress={() => {
           setShowModal(true);
         }}
-      >
-        <NewTodoButtonText>+</NewTodoButtonText>
-      </NewTodoButton>
+      />
       <NewTodoModal
         showModal={showModal}
         closeModal={() => setShowModal(false)}

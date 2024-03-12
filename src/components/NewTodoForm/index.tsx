@@ -8,6 +8,7 @@ import DatePicker from "../DatePicker";
 import { FormContainer, TextError } from "./styles";
 import dayjs from "dayjs";
 import useNewTodoForm from "./useNewTodoForm";
+import { HelperText } from "react-native-paper";
 
 dayjs.locale("pt-br");
 
@@ -25,8 +26,11 @@ interface IError {
   error: FieldError | undefined;
 }
 
-const ErrorText = ({ error }: IError) =>
-  error && <TextError>{error.message?.toString()}</TextError>;
+const ErrorText = ({ error }: IError) => (
+  <HelperText type="error" visible={!!error}>
+    {error?.message?.toString()}
+  </HelperText>
+);
 
 const NewTodoForm = ({ onSave }: INewTodoForm) => {
   const { control, handleSubmit, errors, onSubmit } = useNewTodoForm(onSave);
@@ -38,8 +42,7 @@ const NewTodoForm = ({ onSave }: INewTodoForm) => {
         render={({ field: { onChange, value } }) => (
           <>
             <TextField
-              label="Nome*:"
-              placeholder="Digite o nome da sua meta"
+              label="Nome"
               value={value}
               onChangeText={onChange}
               hasError={!!errors.name}
